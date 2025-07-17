@@ -81,3 +81,12 @@ export const StyledResizableContainer =
       },
     })
   )
+
+export const StyledDownloadContainer = styled.div(({ theme }) => ({
+  fontSize: "0.875rem",
+  marginTop: "3px",
+  paddingBottom: "5px",
+  a: {
+    color: theme.colors.primary,
+  },
+}))

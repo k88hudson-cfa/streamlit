@@ -224,7 +224,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <Resizable
       className="stSidebar"
       data-testid="stSidebar"
-      aria-expanded={!isCollapsed}
+      data-expanded={!isCollapsed}
       enable={{
         top: false,
         right: true,

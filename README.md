@@ -1,3 +1,16 @@
+
+# PATCHING INSTRUCTIONS
+
+* Commit changes to `develop-508` branch, push to fork
+* `make package`
+* `git tag -a v1.46.1-508.X -m "508 fork vX"` where X is an increment of the current version
+* `git push k88hudson-cfa develop-508 --tags`
+* Go to `https://github.com/k88hudson-cfa/streamlit/releases/new`
+* Select the tag, name it the name of the tag, check "prerelease"
+* Upload binaries from lib/dist (streamlit-1.45.1-py3-none-any.whl)
+* Update your pyproject.toml to point to the wheel (replace X with the new version): `streamlit = { url = "https://github.com/k88hudson-cfa/streamlit/releases/download/v1.46.1-508.X/streamlit-1.46.1-py3-none-any.whl" }`
+
+
 <br>
 
 <img src="https://user-images.githubusercontent.com/7164864/217935870-c0bc60a3-6fc0-4047-b011-7b4c59488c91.png" alt="Streamlit logo" style="margin-top:50px"></img>

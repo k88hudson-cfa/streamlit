@@ -36,6 +36,8 @@ export interface LabelProps {
 
   // Associates the label with the input field programmatically. Makes it possible to focus input by clicking on label.
   htmlFor?: string
+
+  ariaHidden?: boolean
 }
 
 export function WidgetLabel({
@@ -44,6 +46,7 @@ export function WidgetLabel({
   disabled,
   labelVisibility,
   htmlFor,
+  ariaHidden = false,
 }: LabelProps): React.ReactElement {
   if (isNullOrUndefined(label)) {
     return <></>
@@ -54,7 +57,7 @@ export function WidgetLabel({
     // widget should have its own aria-label and/or implement accessibility.
     <StyledWidgetLabel
       data-testid="stWidgetLabel"
-      aria-hidden="true"
+      aria-hidden={ariaHidden}
       disabled={disabled}
       labelVisibility={labelVisibility}
       htmlFor={htmlFor}

@@ -90,6 +90,7 @@ const Header = ({
                 <StyledOpenSidebarButton>
                   <BaseButton
                     kind={BaseButtonKind.HEADER_NO_PADDING}
+                    aria-label="Expand sidebar"
                     onClick={onToggleSidebar}
                     data-testid="stExpandSidebarButton"
                   >

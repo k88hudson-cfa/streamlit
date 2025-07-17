@@ -84,7 +84,10 @@ import {
 } from "./hooks"
 import { getTextCell, ImageCellEditor, toGlideColumn } from "./columns"
 import Tooltip from "./Tooltip"
-import { StyledResizableContainer } from "./styled-components"
+import {
+  StyledDownloadContainer,
+  StyledResizableContainer,
+} from "./styled-components"
 
 import "@glideapps/glide-data-grid/dist/index.css"
 import "@glideapps/glide-data-grid-cells/dist/index.css"
@@ -1206,6 +1209,19 @@ function DataFrame({
           // The portal element is expected to always exist (-> PortalProvider).
           document.querySelector("#portal") as HTMLElement
         )}
+      <StyledDownloadContainer>
+        <a
+          href="#"
+          download
+          role="button"
+          onClick={e => {
+            e.preventDefault()
+            exportToCsv()
+          }}
+        >
+          Download data (CSV)
+        </a>
+      </StyledDownloadContainer>
     </StyledResizableContainer>
   )
 }

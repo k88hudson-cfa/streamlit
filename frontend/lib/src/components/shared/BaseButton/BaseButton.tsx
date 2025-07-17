@@ -39,68 +39,74 @@ import {
   StyledTertiaryFormSubmitButton,
 } from "./styled-components"
 
-function BaseButton(props: Readonly<BaseButtonPropsT>): ReactElement {
-  const {
-    kind,
-    size,
-    disabled,
-    onClick,
-    containerWidth,
-    children,
-    autoFocus,
-  } = props
+const BaseButton = React.forwardRef<HTMLButtonElement, BaseButtonPropsT>(
+  (props, ref): ReactElement => {
+    const {
+      kind,
+      size,
+      disabled,
+      onClick,
+      containerWidth,
+      children,
+      autoFocus,
+      id,
+    } = props
 
-  let ComponentType = StyledPrimaryButton
+    let ComponentType = StyledPrimaryButton
 
-  if (kind === BaseButtonKind.SECONDARY) {
-    ComponentType = StyledSecondaryButton
-  } else if (kind === BaseButtonKind.TERTIARY) {
-    ComponentType = StyledTertiaryButton
-  } else if (kind === BaseButtonKind.GHOST) {
-    ComponentType = StyledGhostButton
-  } else if (kind === BaseButtonKind.PILLS) {
-    ComponentType = StyledPillsButton
-  } else if (kind === BaseButtonKind.PILLS_ACTIVE) {
-    ComponentType = StyledPillsButtonActive
-  } else if (kind === BaseButtonKind.SEGMENTED_CONTROL) {
-    ComponentType = StyledSegmentedControlButton
-  } else if (kind === BaseButtonKind.SEGMENTED_CONTROL_ACTIVE) {
-    ComponentType = StyledSegmentedControlButtonActive
-  } else if (kind === BaseButtonKind.BORDERLESS_ICON) {
-    ComponentType = StyledBorderlessIconButton
-  } else if (kind === BaseButtonKind.BORDERLESS_ICON_ACTIVE) {
-    ComponentType = StyledBorderlessIconButtonActive
-  } else if (kind === BaseButtonKind.MINIMAL) {
-    ComponentType = StyledMinimalButton
-  } else if (kind === BaseButtonKind.PRIMARY_FORM_SUBMIT) {
-    ComponentType = StyledPrimaryFormSubmitButton
-  } else if (kind === BaseButtonKind.SECONDARY_FORM_SUBMIT) {
-    ComponentType = StyledSecondaryFormSubmitButton
-  } else if (kind === BaseButtonKind.TERTIARY_FORM_SUBMIT) {
-    ComponentType = StyledTertiaryFormSubmitButton
-  } else if (kind === BaseButtonKind.HEADER_BUTTON) {
-    ComponentType = StyledHeaderButton
-  } else if (kind === BaseButtonKind.HEADER_NO_PADDING) {
-    ComponentType = StyledHeaderNoPaddingButton
-  } else if (kind === BaseButtonKind.ELEMENT_TOOLBAR) {
-    ComponentType = StyledElementToolbarButton
+    if (kind === BaseButtonKind.SECONDARY) {
+      ComponentType = StyledSecondaryButton
+    } else if (kind === BaseButtonKind.TERTIARY) {
+      ComponentType = StyledTertiaryButton
+    } else if (kind === BaseButtonKind.GHOST) {
+      ComponentType = StyledGhostButton
+    } else if (kind === BaseButtonKind.PILLS) {
+      ComponentType = StyledPillsButton
+    } else if (kind === BaseButtonKind.PILLS_ACTIVE) {
+      ComponentType = StyledPillsButtonActive
+    } else if (kind === BaseButtonKind.SEGMENTED_CONTROL) {
+      ComponentType = StyledSegmentedControlButton
+    } else if (kind === BaseButtonKind.SEGMENTED_CONTROL_ACTIVE) {
+      ComponentType = StyledSegmentedControlButtonActive
+    } else if (kind === BaseButtonKind.BORDERLESS_ICON) {
+      ComponentType = StyledBorderlessIconButton
+    } else if (kind === BaseButtonKind.BORDERLESS_ICON_ACTIVE) {
+      ComponentType = StyledBorderlessIconButtonActive
+    } else if (kind === BaseButtonKind.MINIMAL) {
+      ComponentType = StyledMinimalButton
+    } else if (kind === BaseButtonKind.PRIMARY_FORM_SUBMIT) {
+      ComponentType = StyledPrimaryFormSubmitButton
+    } else if (kind === BaseButtonKind.SECONDARY_FORM_SUBMIT) {
+      ComponentType = StyledSecondaryFormSubmitButton
+    } else if (kind === BaseButtonKind.TERTIARY_FORM_SUBMIT) {
+      ComponentType = StyledTertiaryFormSubmitButton
+    } else if (kind === BaseButtonKind.HEADER_BUTTON) {
+      ComponentType = StyledHeaderButton
+    } else if (kind === BaseButtonKind.HEADER_NO_PADDING) {
+      ComponentType = StyledHeaderNoPaddingButton
+    } else if (kind === BaseButtonKind.ELEMENT_TOOLBAR) {
+      ComponentType = StyledElementToolbarButton
+    }
+
+    return (
+      <ComponentType
+        id={id || ""}
+        ref={ref}
+        kind={kind}
+        size={size ?? BaseButtonSize.MEDIUM}
+        containerWidth={containerWidth || false}
+        disabled={disabled || false}
+        onClick={onClick || (() => {})}
+        autoFocus={autoFocus || false}
+        data-testid={props["data-testid"] ?? `stBaseButton-${kind}`}
+        aria-label={props["aria-label"] ?? ""}
+      >
+        {children}
+      </ComponentType>
+    )
   }
+)
 
-  return (
-    <ComponentType
-      kind={kind}
-      size={size ?? BaseButtonSize.MEDIUM}
-      containerWidth={containerWidth || false}
-      disabled={disabled || false}
-      onClick={onClick || (() => {})}
-      autoFocus={autoFocus || false}
-      data-testid={props["data-testid"] ?? `stBaseButton-${kind}`}
-      aria-label={props["aria-label"] ?? ""}
-    >
-      {children}
-    </ComponentType>
-  )
-}
 export type BaseButtonProps = BaseButtonPropsT
 export { BaseButtonKind, BaseButtonSize }
 export default BaseButton

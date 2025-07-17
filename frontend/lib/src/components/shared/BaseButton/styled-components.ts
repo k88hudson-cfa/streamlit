@@ -49,6 +49,7 @@ export enum BaseButtonSize {
 }
 
 export interface BaseButtonProps {
+  id?: string
   kind: BaseButtonKind
   size?: BaseButtonSize
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO: Replace 'any' with a more specific type.

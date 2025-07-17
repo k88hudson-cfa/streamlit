@@ -166,6 +166,7 @@ function Tooltip({
     >
       {/* BaseWeb manipulates its child, so we create a wrapper div for protection */}
       <div
+        tabIndex={0}
         style={{
           display: "flex",
           flexDirection: "row",

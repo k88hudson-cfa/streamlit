@@ -104,7 +104,7 @@ def check_for_sidebar_flicker(page: Page, initial_state: str) -> None:
                 # Found flicker - sidebar was expanded when it should stay collapsed
                 states_str = "\n".join(
                     [
-                        f"  {s['timestamp']}ms: aria-expanded={s['ariaExpanded']} (via {s['method']})"
+                        f"  {s['timestamp']}ms: data-expanded={s['ariaExpanded']} (via {s['method']})"
                         for s in states
                     ]
                 )
@@ -120,7 +120,7 @@ def check_for_sidebar_flicker(page: Page, initial_state: str) -> None:
                 # Found flicker - sidebar was collapsed when it should stay expanded
                 states_str = "\n".join(
                     [
-                        f"  {s['timestamp']}ms: aria-expanded={s['ariaExpanded']} (via {s['method']})"
+                        f"  {s['timestamp']}ms: data-expanded={s['ariaExpanded']} (via {s['method']})"
                         for s in states
                     ]
                 )
@@ -281,7 +281,7 @@ def test_sidebar_no_flicker_without_page_config(page: Page, app_port: int):
             if state["ariaExpanded"] == "false":
                 states_str = "\n".join(
                     [
-                        f"  {s['timestamp']}ms: aria-expanded={s['ariaExpanded']} (via {s['method']})"
+                        f"  {s['timestamp']}ms: data-expanded={s['ariaExpanded']} (via {s['method']})"
                         for s in states
                     ]
                 )
@@ -319,7 +319,7 @@ def test_sidebar_stability_after_initial_load(page: Page, app_port: int):
     if states:
         states_str = "\n".join(
             [
-                f"  {s['timestamp']}ms: aria-expanded={s['ariaExpanded']} (via {s['method']})"
+                f"  {s['timestamp']}ms: data-expanded={s['ariaExpanded']} (via {s['method']})"
                 for s in states
             ]
         )
@@ -330,4 +330,4 @@ def test_sidebar_stability_after_initial_load(page: Page, app_port: int):
     # Verify sidebar is still attached and stable
     sidebar = page.get_by_test_id("stSidebar")
     expect(sidebar).to_be_attached()
-    expect(sidebar).to_have_attribute("aria-expanded", "false")
+    expect(sidebar).to_have_attribute("data-expanded", "false")

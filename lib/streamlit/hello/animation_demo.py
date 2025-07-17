@@ -23,7 +23,9 @@ from streamlit.hello.utils import show_code
 def animation_demo() -> None:
     # Interactive Streamlit elements, like these sliders, return their value.
     # This gives you an extremely simple interaction model.
-    iterations = st.sidebar.slider("Level of detail", 2, 20, 10, 1)
+    iterations = st.sidebar.slider(
+        "Level of detail", 2, 20, 10, 1, help="Changes the level of detail"
+    )
     separation = st.sidebar.slider("Separation", 0.7, 2.0, 0.7885)
 
     # Non-interactive elements return a placeholder to their location

@@ -458,49 +458,50 @@ function MainMenu(props: Readonly<Props>): ReactElement {
   }
 
   return (
-    <StatefulPopover
-      focusLock
-      placement={PLACEMENT.bottomRight}
-      content={({ close }) => (
-        <StyledMenuContainer>
-          {menuItems.length != 0 && (
-            <SubMenu
-              menuItems={menuItems}
-              closeMenu={close}
-              isDevMenu={false}
-              metricsMgr={props.metricsMgr}
-            />
-          )}
-          {devMenuItems.length != 0 && (
-            <SubMenu
-              menuItems={devMenuItems}
-              closeMenu={close}
-              isDevMenu={true}
-              metricsMgr={props.metricsMgr}
-            />
-          )}
-        </StyledMenuContainer>
-      )}
-      overrides={{
-        Body: {
-          props: {
-            "data-testid": "stMainMenuPopover",
-            className: "stMainMenuPopover",
+    <StyledMainMenuContainer>
+      <StatefulPopover
+        focusLock
+        placement={PLACEMENT.bottomRight}
+        content={({ close }) => (
+          <StyledMenuContainer>
+            {menuItems.length != 0 && (
+              <SubMenu
+                menuItems={menuItems}
+                closeMenu={close}
+                isDevMenu={false}
+                metricsMgr={props.metricsMgr}
+              />
+            )}
+            {devMenuItems.length != 0 && (
+              <SubMenu
+                menuItems={devMenuItems}
+                closeMenu={close}
+                isDevMenu={true}
+                metricsMgr={props.metricsMgr}
+              />
+            )}
+          </StyledMenuContainer>
+        )}
+        overrides={{
+          Body: {
+            props: {
+              "data-testid": "stMainMenuPopover",
+              className: "stMainMenuPopover",
+            },
           },
-        },
-      }}
-    >
-      <StyledMainMenuContainer
-        id="MainMenu"
-        className="stMainMenu"
-        data-testid="stMainMenu"
+        }}
       >
-        <BaseButton kind={BaseButtonKind.HEADER_NO_PADDING}>
+        <BaseButton
+          id="MainMenu"
+          data-testid="stMainMenu"
+          kind={BaseButtonKind.HEADER_NO_PADDING}
+          aria-label="Open menu"
+        >
           <Icon content={MoreVert} size="lg" />
         </BaseButton>
-        {props.screenCastState === "RECORDING" && <StyledRecordingIndicator />}
-      </StyledMainMenuContainer>
-    </StatefulPopover>
+      </StatefulPopover>
+      {props.screenCastState === "RECORDING" && <StyledRecordingIndicator />}
+    </StyledMainMenuContainer>
   )
 }
 
